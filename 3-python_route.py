@@ -12,22 +12,25 @@ def index():
     """index page"""
     return("Hello HBNB!")
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """hbnb route"""
     return("HBNB")
+
 
 @app.route('/c/<text>/', strict_slashes=False)
 def c(text):
     """c route"""
     return("C {}".format(text))
 
+
 @app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>/', strict_slashes=False)
-def python(text= "is cool"):
+def python(text="is cool"):
     """python route"""
-    if text != "is cool":    
-        new_text = text.replace("_", " ") 
+    if text != "is cool":
+        new_text = text.replace("_", " ")
         return("Python {}".format(new_text))
     return("Python {}".format(text))
 
