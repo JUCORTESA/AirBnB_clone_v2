@@ -66,12 +66,18 @@ def states_list():
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_list():
+    """
+    Function that returns a list of cities
+    """
     return render_template('8-cities_by_states.html',
                            my_dict=a_dict, my_city=b_dict)
 
 
 @app.teardown_appcontext
 def teardown(exception=None):
+    """
+    Function closes the current session
+    """
     storage.close()
 
 if __name__ == '__main__':
