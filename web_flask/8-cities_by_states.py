@@ -67,7 +67,7 @@ def states_list():
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_list():
     """
-    Function that returns a list of cities
+    Function that returns a list of cities by states
     """
     return render_template('8-cities_by_states.html',
                            my_dict=a_dict, my_city=b_dict)
