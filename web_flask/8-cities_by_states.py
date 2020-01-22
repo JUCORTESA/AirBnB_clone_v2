@@ -3,7 +3,7 @@
 A python script that starts a Flask web application
 """
 from flask import Flask, render_template
-from models import storage, State, City
+from models import storage
 
 app = Flask(__name__)
 a_dict = storage.all('State').values()
