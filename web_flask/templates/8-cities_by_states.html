@@ -9,10 +9,8 @@
           {% for values in my_dict | sort(attribute='name') %}
           <LI>{{ values.id }}: <B>{{ values.name }}</B>
             <UL>
-              {% for items in my_city | sort(attribute='name') %}
-              {%- if items.state_id == values.id %}
+              {% for items in values.cities | sort(attribute='name') %}
               <LI>{{ items.id }}: <B>{{ items.name }}</B></LI>
-              {% endif -%}
               {% endfor %}
             </UL>
           </LI>

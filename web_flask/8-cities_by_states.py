@@ -7,7 +7,6 @@ from models import storage
 
 app = Flask(__name__)
 a_dict = storage.all('State').values()
-b_dict = storage.all('City').values()
 
 
 @app.route('/', strict_slashes=False)
@@ -70,7 +69,7 @@ def cities_list():
     Function that returns a list of cities by states
     """
     return render_template('8-cities_by_states.html',
-                           my_dict=a_dict, my_city=b_dict)
+                           my_dict=a_dict)
 
 
 @app.teardown_appcontext
