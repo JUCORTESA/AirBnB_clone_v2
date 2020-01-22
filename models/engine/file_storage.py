@@ -8,6 +8,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+import shlex
 
 
 class FileStorage:
@@ -20,31 +21,20 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def delete(self, obj=None):
-        """delete obj from __objects if it’s inside
-        """
-        if obj:
-            for key in self.__objects:
-                if obj.id == self.__objects[key].id:
-                    del self.__objects[key]
-                    break
-            self.save()
-        else:
-            return
-
     def all(self, cls=None):
         """returns a dictionary
         Return:
             returns a dictionary of __object
         """
-
+        dic = {}
         if cls:
-            N_dictionary = {}
-            for name_class in self.__objects:
-                if cls.__name__ in name_class:
-                    N_dictionary.update({name_class:
-                                        self.__objects[name_class]})
-            return N_dictionary
+            dictionary = self.__objects
+            for key in dictionary:
+                partition = key.replace('.', ' ')
+                partition = shlex.split(partition)
+                if (partition[0] == cls.__name__):
+                    dic[key] = self.__objects[key]
+            return (dic)
         else:
             return self.__objects
 
@@ -77,7 +67,14 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
+    def delete(self, obj=None):
+        """ delete an existing element
+        """
+        if obj:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            del self.__objects[key]
+
     def close(self):
-        """deserializing the JSON file to objects
+        """ close method Airbnb flask
         """
         self.reload()
