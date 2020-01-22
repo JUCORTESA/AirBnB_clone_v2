@@ -6,17 +6,17 @@
     <BODY>
         <H1>States</H1>
         <UL>
-            {% for values in my_dict | sort(attribute='name') %}
-	    <LI>{{ values.id }}: <B>{{ values.name }}</B>
-	      <UL>
-                {% for items in my_city | sort(attribute='name') %}
-	        {%- if items.state_id == values.id %}    
-		<LI>{{ items.id }}: <B>{{ items.name }}</B></LI>
-	        {% endif -%}
-		{% endfor %}
-	      </UL>
-	    </LI>
-	    {% endfor %}
+          {% for values in my_dict | sort(attribute='name') %}
+          <LI>{{ values.id }}: <B>{{ values.name }}</B>
+            <UL>
+              {% for items in my_city | sort(attribute='name') %}
+              {%- if items.state_id == values.id %}
+              <LI>{{ items.id }}: <B>{{ items.name }}</B></LI>
+              {% endif -%}
+              {% endfor %}
+            </UL>
+          </LI>
+          {% endfor %}
         </UL>
     </BODY>
 </HTML>
